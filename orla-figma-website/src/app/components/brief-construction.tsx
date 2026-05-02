@@ -260,11 +260,11 @@ export function BriefConstruction() {
               transition={{ duration: 0.5 }}
               className="min-h-[280px]"
             >
-              <div className="text-[10px] tracking-[0.24em] uppercase text-stone-500 smallcaps mb-4">
+              <div className="text-[10px] tracking-[0.24em] uppercase text-quaternary smallcaps mb-4">
                 Question
               </div>
               <p
-                className="text-stone-100 leading-[1.35]"
+                className="text-primary leading-[1.35]"
                 style={{ fontSize: "1rem" }}
               >
                 {s.question}
@@ -275,15 +275,15 @@ export function BriefConstruction() {
             <div
               className="rounded-sm p-5 min-h-[280px] flex flex-col"
               style={{
-                background: "rgba(255,255,255,0.02)",
-                border: "1px solid rgba(255,255,255,0.05)",
+                background: "var(--panel-row-hover)",
+                border: "1px solid var(--border-subtle)",
               }}
             >
               <div className="flex items-center gap-2 mb-5">
-                <div className="h-1.5 w-1.5 rounded-[1px]" style={{ background: "#FFDB51" }} />
-                <div className="text-[11px] text-stone-300">Agency</div>
+                <div className="h-1.5 w-1.5 rounded-[1px]" style={{ background: "var(--gold-cta)" }} />
+                <div className="text-[11px] text-secondary">Agency</div>
               </div>
-              <div className="flex gap-0 rounded-[2px] overflow-hidden mb-6" style={{ background: "rgba(255,255,255,0.03)" }}>
+              <div className="flex gap-0 rounded-[2px] overflow-hidden mb-6" style={{ background: "var(--panel-row-hover)" }}>
                 {s.tabs.map((tab, i) => (
                   <div
                     key={tab}
@@ -296,9 +296,9 @@ export function BriefConstruction() {
                       color:
                         i === s.activeTabIdx && sliderT > 0.3
                           ? "#93C5FD"
-                          : "rgba(250,250,249,0.5)",
+                          : "var(--text-quaternary)",
                       borderRight:
-                        i < s.tabs.length - 1 ? "1px solid rgba(255,255,255,0.05)" : undefined,
+                        i < s.tabs.length - 1 ? "1px solid var(--border-subtle)" : undefined,
                     }}
                   >
                     {tab}
@@ -308,31 +308,31 @@ export function BriefConstruction() {
 
               <div className="flex items-center gap-2 mb-3">
                 <div className="h-1.5 w-1.5 rounded-[1px]" style={{ background: "#93C5FD" }} />
-                <div className="text-[11px] text-stone-300">{s.controlLabel}</div>
+                <div className="text-[11px] text-secondary">{s.controlLabel}</div>
               </div>
               <div className="relative mt-2 mb-1">
-                <div className="h-[2px] w-full rounded-full" style={{ background: "rgba(255,255,255,0.08)" }} />
+                <div className="h-[2px] w-full rounded-full" style={{ background: "var(--border-default)" }} />
                 <div
                   className="absolute top-0 left-0 h-[2px] rounded-full"
                   style={{
                     width: `${sliderPos * 100}%`,
-                    background: "#60A5FA",
+                    background: "var(--signal-patterns)",
                   }}
                 />
                 <div
                   className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full"
                   style={{
                     left: `calc(${sliderPos * 100}% - 6px)`,
-                    background: "#FAFAF9",
+                    background: "var(--text-primary)",
                     boxShadow: "0 0 0 3px rgba(96,165,250,0.25)",
                   }}
                 />
                 <div
-                  className="absolute -bottom-7 mono text-[10px] text-stone-300 px-1.5 py-0.5 rounded-sm"
+                  className="absolute -bottom-7 mono text-[10px] text-secondary px-1.5 py-0.5 rounded-sm"
                   style={{
                     left: `calc(${sliderPos * 100}% - 14px)`,
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(255,255,255,0.08)",
+                    background: "var(--panel-row-hover)",
+                    border: "1px solid var(--border-default)",
                   }}
                 >
                   {sliderLabel}
@@ -340,14 +340,14 @@ export function BriefConstruction() {
               </div>
 
               <div className="mt-auto pt-10 flex items-baseline justify-between">
-                <div className="text-[10px] tracking-[0.2em] uppercase text-stone-500">Scope</div>
-                <div className="nums text-[11px] text-stone-300">FY26 · Q2–Q3</div>
+                <div className="text-[10px] tracking-[0.2em] uppercase text-quaternary">Scope</div>
+                <div className="nums text-[11px] text-secondary">FY26 · Q2–Q3</div>
               </div>
             </div>
 
             {/* Col 3 — Chart */}
             <div className="min-h-[280px]">
-              <div className="text-[10px] tracking-[0.24em] uppercase text-stone-500 smallcaps mb-4">
+              <div className="text-[10px] tracking-[0.24em] uppercase text-quaternary smallcaps mb-4">
                 Response
               </div>
               <div className="space-y-3.5">
@@ -359,7 +359,7 @@ export function BriefConstruction() {
 
             {/* Col 4 — Summary */}
             <div className="min-h-[280px] flex flex-col">
-              <div className="text-[10px] tracking-[0.24em] uppercase text-stone-500 smallcaps mb-4">
+              <div className="text-[10px] tracking-[0.24em] uppercase text-quaternary smallcaps mb-4">
                 Summary
               </div>
               <div className="space-y-4">
@@ -378,10 +378,10 @@ export function BriefConstruction() {
                   progress={s.ring.from + (s.ring.to - s.ring.from) * easeInOut(summaryT)}
                 />
                 <div>
-                  <div className="text-[10px] tracking-[0.22em] uppercase text-stone-500 mb-1">
+                  <div className="text-[10px] tracking-[0.22em] uppercase text-quaternary mb-1">
                     {s.ring.label}
                   </div>
-                  <div className="nums text-[15px] text-stone-100">
+                  <div className="nums text-[15px] text-primary">
                     {Math.round(
                       (s.ring.from + (s.ring.to - s.ring.from) * easeInOut(summaryT)) * 100
                     )}
@@ -393,7 +393,7 @@ export function BriefConstruction() {
           </div>
 
           {/* Scenario ticker */}
-          <div className="mt-10 pt-6 border-t border-stone-50/10 flex items-center justify-between">
+          <div className="mt-10 pt-6 flex items-center justify-between" style={{ borderTop: "1px solid var(--border-default)" }}>
             <div className="flex items-center gap-3">
               {scenarios.map((_, i) => (
                 <div
@@ -401,15 +401,15 @@ export function BriefConstruction() {
                   className="h-[2px] w-8 rounded-full transition-colors"
                   style={{
                     background:
-                      i === idx ? "#60A5FA" : "rgba(255,255,255,0.12)",
+                      i === idx ? "var(--signal-patterns)" : "var(--border-strong)",
                   }}
                 />
               ))}
-              <span className="nums text-[11px] text-stone-500 ml-2">
+              <span className="nums text-[11px] text-quaternary ml-2">
                 Scenario {idx + 1} of {scenarios.length}
               </span>
             </div>
-            <span className="text-[11px] text-stone-500 smallcaps tracking-[0.2em] uppercase">
+            <span className="text-[11px] text-quaternary smallcaps tracking-[0.2em] uppercase">
               Autoplay · Live
             </span>
           </div>
@@ -429,13 +429,13 @@ function ProgressBar({ col, t, idx }: { col: number; t: number; idx: number }) {
   const ends = [0.2, 0.45, 0.75, 0.85];
   const local = clamp01((t - starts[col]) / (ends[col] - starts[col]));
   return (
-    <div className="h-[2px] w-full rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+    <div className="h-[2px] w-full rounded-full overflow-hidden" style={{ background: "var(--border-subtle)" }}>
       <div
         key={`${idx}-${col}`}
         className="h-full"
         style={{
           width: `${local * 100}%`,
-          background: "#60A5FA",
+          background: "var(--signal-patterns)",
           transition: "width 120ms linear",
         }}
       />
@@ -456,21 +456,21 @@ function BarRow({ row, progress, delay }: { row: Row; progress: number; delay: n
   return (
     <div>
       <div className="flex items-baseline justify-between mb-1.5">
-        <div className="text-[11px] text-stone-300">{row.label}</div>
+        <div className="text-[11px] text-secondary">{row.label}</div>
         <div className="nums text-[11px]">
           {row.fmt ? row.fmt(value) : value.toFixed(0)}
         </div>
       </div>
       <div
         className="relative h-[4px] w-full rounded-full overflow-hidden"
-        style={{ background: "rgba(255,255,255,0.05)" }}
+        style={{ background: "var(--border-subtle)" }}
       >
         {/* baseline */}
         <div
           className="absolute top-0 left-0 h-full"
           style={{
             width: `${baselinePct}%`,
-            background: "rgba(250,250,249,0.35)",
+            background: "var(--border-strong)",
           }}
         />
         {/* uplift */}
@@ -480,7 +480,7 @@ function BarRow({ row, progress, delay }: { row: Row; progress: number; delay: n
             left: `${baselinePct}%`,
             width: `${Math.max(0, widthPct - baselinePct)}%`,
             background:
-              "repeating-linear-gradient(-45deg, #60A5FA 0 2px, rgba(96,165,250,0.35) 2px 4px)",
+              "repeating-linear-gradient(-45deg, var(--signal-patterns) 0 2px, rgba(96,165,250,0.35) 2px 4px)",
           }}
         />
         {/* benchmark tick */}
@@ -488,7 +488,7 @@ function BarRow({ row, progress, delay }: { row: Row; progress: number; delay: n
           className="absolute top-[-2px] w-[1px] h-[8px]"
           style={{
             left: `${baselinePct}%`,
-            background: "rgba(250,250,249,0.5)",
+            background: "var(--text-quaternary)",
           }}
         />
       </div>
@@ -510,8 +510,8 @@ function DeltaRow({
   const color =
     tone === "up" ? "#34D399" : "#F87171";
   return (
-    <div className="flex items-center justify-between py-3 border-b border-stone-50/8">
-      <span className="text-[13px] text-stone-200">{label}</span>
+    <div className="flex items-center justify-between py-3" style={{ borderBottom: "1px solid var(--border-subtle)" }}>
+      <span className="text-[13px] text-secondary">{label}</span>
       <span className="nums text-[13px]" style={{ color }}>
         {fmt(value)}
       </span>
@@ -530,7 +530,7 @@ function Ring({ progress }: { progress: number }) {
         cx={size / 2}
         cy={size / 2}
         r={r}
-        stroke="rgba(255,255,255,0.08)"
+        stroke="var(--border-default)"
         strokeWidth={stroke}
         fill="none"
       />
@@ -538,7 +538,7 @@ function Ring({ progress }: { progress: number }) {
         cx={size / 2}
         cy={size / 2}
         r={r}
-        stroke="#60A5FA"
+        stroke="var(--signal-patterns)"
         strokeWidth={stroke}
         fill="none"
         strokeLinecap="round"
