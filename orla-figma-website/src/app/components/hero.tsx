@@ -30,11 +30,31 @@ function useTheme() {
   return { theme, toggleTheme };
 }
 
+function OpportunityField() {
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none absolute inset-0"
+      style={{
+        backgroundImage:
+          "radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)",
+        backgroundSize: "16px 16px",
+        backgroundPosition: "0 0",
+        maskImage:
+          "radial-gradient(ellipse 70% 50% at 30% 50%, black 30%, transparent 75%)",
+        WebkitMaskImage:
+          "radial-gradient(ellipse 70% 50% at 30% 50%, black 30%, transparent 75%)",
+      }}
+    />
+  );
+}
+
 export function Hero() {
   const { theme, toggleTheme } = useTheme();
   
   return (
     <section className="relative min-h-screen px-6 md:px-12 lg:px-20 pt-8 pb-20 overflow-hidden">
+      <OpportunityField />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -111,8 +131,88 @@ export function Hero() {
               See how it works →
             </a>
           </div>
+          <div className="mt-10 flex items-center gap-3 text-[12px] text-tertiary">
+            <span className="relative inline-block w-1.5 h-1.5 rounded-full" style={{ background: "var(--signal-rules)" }}>
+              <span className="absolute inset-0 rounded-full animate-ping" style={{ background: "var(--signal-rules)", opacity: 0.5 }} />
+            </span>
+            <span>
+              Updated hourly · Tracking <span className="nums">4,217</span> active opportunities across <span className="nums">24</span> federal agencies
+            </span>
+          </div>
         </motion.div>
       </div>
+    </section>
+  );
+}
+
+const FUNNEL_STAGES = [
+  { label: "Active opportunities", n: "4,217", sub: "across 24 agencies" },
+  { label: "NAICS shortlist",      n: "312",   sub: "in your code set" },
+  { label: "Composite watchlist",  n: "47",    sub: "score ≥ 0.60" },
+  { label: "This week's brief",    n: "3",     sub: "named recommendations" },
+];
+
+export function FunnelStrip() {
+  return (
+    <section
+      className="px-6 md:px-12 lg:px-20 py-16 md:py-20"
+      style={{ borderTop: "1px solid var(--border-subtle)" }}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 1.0, ease: [0.2, 0.7, 0.2, 1] }}
+      >
+        <div className="flex items-center gap-4 mb-10">
+          <div className="nums text-[12px] text-quaternary">§ 00</div>
+          <div className="h-px flex-1 max-w-20" style={{ background: "var(--border-strong)" }} />
+          <div className="text-[11px] tracking-[0.24em] uppercase text-tertiary smallcaps">
+            The funnel
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 md:flex md:justify-between gap-y-10 gap-x-6">
+          {FUNNEL_STAGES.map((stage, i) => (
+            <motion.div
+              key={stage.label}
+              className="flex items-start gap-4 md:gap-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.15, ease: [0.2, 0.7, 0.2, 1] }}
+            >
+              <div className="flex flex-col">
+                <div className="flex items-baseline gap-2">
+                  <span
+                    className="nums text-primary"
+                    style={{ fontSize: "2.5rem", letterSpacing: "-0.01em" }}
+                  >
+                    {stage.n}
+                  </span>
+                  {i === FUNNEL_STAGES.length - 1 && (
+                    <span
+                      className="nums text-[10px] uppercase tracking-[0.18em]"
+                      style={{ color: "var(--gold-cta)" }}
+                    >
+                      · brief
+                    </span>
+                  )}
+                </div>
+                <div className="text-[11px] uppercase tracking-[0.22em] text-quaternary smallcaps mt-2">
+                  {stage.label}
+                </div>
+                <div className="text-[12px] text-tertiary mt-1">
+                  {stage.sub}
+                </div>
+              </div>
+              {i < FUNNEL_STAGES.length - 1 && (
+                <span className="hidden md:block nums text-[18px] text-quaternary mt-3">→</span>
+              )}
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
 }

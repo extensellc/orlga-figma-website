@@ -1,4 +1,4 @@
-import { Hero } from "./components/hero";
+import { Hero, FunnelStrip } from "./components/hero";
 import { Broken, HowOrlaThinks, ExampleInsight, Trust, Footer } from "./components/sections";
 import { ProgressRail } from "./components/progress-rail";
 
@@ -15,6 +15,7 @@ export default function App() {
       <ProgressRail />
       <main id="main">
         <Hero />
+        <FunnelStrip />
         <Broken />
         <HowOrlaThinks />
         <ExampleInsight />
