@@ -1,0 +1,55 @@
+/* Micro-interactions: subtle hover lift on panel cards */
+.panel-hover {
+  transition:
+    border-color 240ms ease,
+    background-color 240ms ease,
+    transform 240ms ease,
+    box-shadow 240ms ease;
+}
+.panel-hover:hover {
+  border-color: rgba(255, 219, 81, 0.18) !important;
+  background-color: rgba(255, 255, 255, 0.018);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 40px -20px rgba(0, 0, 0, 0.6);
+}
+
+/* Visible focus rings for keyboard users */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid rgba(255, 219, 81, 0.6);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  padding: 0.5rem 0.875rem;
+  background: #FFDB51;
+  color: #141827;
+  font-size: 13px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel-hover,
+  .panel-hover:hover {
+    transition: none;
+    transform: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
