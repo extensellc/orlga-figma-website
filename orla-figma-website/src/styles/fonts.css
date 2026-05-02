@@ -21,7 +21,7 @@ html, body {
   font-family: var(--font-nums);
   font-feature-settings: "tnum";
   font-variant-numeric: tabular-nums;
-  color: #FAFAF9;
+  color: var(--text-primary);
 }
 
 .nums-lg {

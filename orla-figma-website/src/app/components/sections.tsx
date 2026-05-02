@@ -24,7 +24,7 @@ function useSharedWeights() {
 }
 
 const sectionPad = "px-6 md:px-12 lg:px-20 py-28 md:py-36";
-const eyebrow = "text-[11px] tracking-[0.24em] uppercase text-stone-400 smallcaps";
+const eyebrow = "text-[11px] tracking-[0.24em] uppercase text-tertiary smallcaps";
 const h2Style = {
   fontSize: "clamp(1.875rem, 3.6vw, 2.75rem)",
   fontWeight: 500,
@@ -35,8 +35,8 @@ const h2Style = {
 // Shared translucent panel — lets the gradient show through, reads as layered depth
 const panel: React.CSSProperties = {
   background:
-    "linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.012))",
-  border: "1px solid rgba(255,255,255,0.06)",
+    "linear-gradient(180deg, var(--panel-from), var(--panel-to))",
+  border: "1px solid var(--border-subtle)",
   boxShadow: "0 1px 0 rgba(255,255,255,0.04) inset",
 };
 
@@ -58,19 +58,19 @@ function SectionHeader({
   return (
     <Reveal>
       <div className="flex items-center gap-4 mb-6">
-        <div className="nums text-[12px] text-stone-500">§&nbsp;{num}</div>
-        <div className="h-px flex-1 max-w-20" style={{ background: "rgba(255,255,255,0.12)" }} />
+        <div className="nums text-[12px] text-quaternary">§&nbsp;{num}</div>
+        <div className="h-px flex-1 max-w-20" style={{ background: "var(--border-strong)" }} />
         <div className={eyebrow}>{kicker}</div>
       </div>
       <h2
         id={id}
-        className={`serif text-stone-50 ${wide ? "max-w-5xl" : "max-w-3xl"} ${lede ? "mb-6" : "mb-16"}`}
+        className={`serif text-primary ${wide ? "max-w-5xl" : "max-w-3xl"} ${lede ? "mb-6" : "mb-16"}`}
         style={h2Style}
       >
         {title}
       </h2>
       {lede && (
-        <p className="text-stone-400 max-w-2xl mb-16" style={{ fontSize: "1rem" }}>
+        <p className="text-tertiary max-w-2xl mb-16" style={{ fontSize: "1rem" }}>
           {lede}
         </p>
       )}
@@ -114,17 +114,17 @@ export function Broken() {
         {pains.map((p, i) => (
           <Reveal key={p.n} delay={i * 0.1}>
             <div className="p-8 md:p-10 h-full rounded-sm panel-hover" style={panel}>
-              <div className="nums text-[11px] text-stone-500 mb-6">{p.n}</div>
+              <div className="nums text-[11px] text-quaternary mb-6">{p.n}</div>
               <h3
-                className="serif text-stone-50 mb-4"
+                className="serif text-primary mb-4"
                 style={{ fontSize: "1.375rem", fontWeight: 500, lineHeight: 1.3 }}
               >
                 {p.t}
               </h3>
-              <p className="text-stone-300 leading-relaxed mb-8" style={{ fontSize: "0.9375rem" }}>
+              <p className="text-secondary leading-relaxed mb-8" style={{ fontSize: "0.9375rem" }}>
                 {p.b}
               </p>
-              <div className="pt-5 border-t border-stone-50/10">
+              <div className="pt-5" style={{ borderTop: "1px solid var(--border-default)" }}>
                 <div className="nums text-[13px]">{p.stat}</div>
               </div>
             </div>
@@ -175,7 +175,7 @@ export function Different() {
       id="different"
       className={"relative " + sectionPad}
       aria-labelledby="different-title"
-      style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
+      style={{ borderTop: "1px solid var(--border-subtle)" }}
     >
       <SectionHeader
         id="different-title"
@@ -185,9 +185,9 @@ export function Different() {
         lede={
           <>
             From <span className="nums">312</span> NAICS-relevant opportunities, Orla derives three
-            independent signals — <span className="text-stone-50">Rules</span>,{" "}
-            <span className="text-stone-50">Patterns</span>, and{" "}
-            <span className="text-stone-50">Judgment</span> — and combines them into one composite.
+            independent signals — <span className="text-primary">Rules</span>,{" "}
+            <span className="text-primary">Patterns</span>, and{" "}
+            <span className="text-primary">Judgment</span> — and combines them into one composite.
             Move the weights; the watchlist re-ranks in real time.
           </>
         }
@@ -204,12 +204,12 @@ export function Different() {
                   <button
                     type="button"
                     onClick={() => setW(DEFAULT_WEIGHTS)}
-                    className="text-[11px] text-stone-300 hover:text-stone-50 transition underline-offset-2 hover:underline"
+                    className="text-[11px] text-secondary hover:text-primary transition underline-offset-2 hover:underline"
                   >
                     Reset to default
                   </button>
                 )}
-                <div className="nums text-[11px] text-stone-500">Σ = 1.00</div>
+                <div className="nums text-[11px] text-quaternary">Σ = 1.00</div>
               </div>
             </div>
             {FACTORS.map((f) => (
@@ -217,11 +217,11 @@ export function Different() {
                 <div className="flex items-baseline justify-between mb-2">
                   <div className="flex items-center gap-3">
                     <span className="w-2 h-2 rounded-full" style={{ background: f.color }} />
-                    <div className="text-stone-100" style={{ fontSize: "0.9375rem", fontWeight: 500 }}>
+                    <div className="text-primary" style={{ fontSize: "0.9375rem", fontWeight: 500 }}>
                       {f.label}
                     </div>
                   </div>
-                  <div className="nums text-[12px] text-stone-100">{(n[f.k] * 100).toFixed(0)}%</div>
+                  <div className="nums text-[12px] text-primary">{(n[f.k] * 100).toFixed(0)}%</div>
                 </div>
                 <div className="relative">
                   <input
@@ -240,14 +240,14 @@ export function Different() {
                     className="pointer-events-none absolute top-1/2 -translate-y-1/2 w-px h-2.5"
                     style={{
                       left: `${DEFAULT_WEIGHTS[f.k] * 100}%`,
-                      background: "rgba(255,255,255,0.35)",
+                      background: "var(--border-strong)",
                     }}
                   />
                 </div>
-                <p className="text-[12px] text-stone-400 mt-1.5 leading-relaxed">{f.desc}</p>
+                <p className="text-[12px] text-tertiary mt-1.5 leading-relaxed">{f.desc}</p>
               </div>
             ))}
-            <div className="pt-5 border-t border-stone-50/10 text-[12px] text-stone-500 leading-relaxed">
+            <div className="pt-5 text-[12px] text-quaternary leading-relaxed" style={{ borderTop: "1px solid var(--border-default)" }}>
               These are the weights a senior analyst would set. Move them; the watchlist follows.
             </div>
           </div>
@@ -255,9 +255,9 @@ export function Different() {
 
         <Reveal delay={0.15}>
           <div className="rounded-sm p-7 md:p-8" style={panel}>
-            <div className="flex items-baseline justify-between mb-5 pb-4 border-b border-stone-50/10">
+            <div className="flex items-baseline justify-between mb-5 pb-4" style={{ borderBottom: "1px solid var(--border-default)" }}>
               <div className={eyebrow}>Composite watchlist · top 6 of 47</div>
-              <div className="nums text-[11px] text-stone-500">Updated · live</div>
+              <div className="nums text-[11px] text-quaternary">Updated · live</div>
             </div>
             <motion.ul layout className="space-y-2">
               {scored.map((o, i) => (
@@ -268,27 +268,27 @@ export function Different() {
                   className="grid items-baseline gap-x-4 px-4 py-3 rounded-sm"
                   style={{
                     gridTemplateColumns: "auto auto 1fr auto auto",
-                    background: i === 0 ? "rgba(255,219,81,0.06)" : "rgba(255,255,255,0.018)",
-                    borderLeft: i === 0 ? "2px solid #FFDB51" : "2px solid transparent",
+                    background: i === 0 ? "rgba(255,219,81,0.06)" : "var(--panel-row-hover)",
+                    borderLeft: i === 0 ? "2px solid var(--gold-cta)" : "2px solid transparent",
                   }}
                 >
-                  <div className="nums text-[12px] text-stone-500 w-6">
+                  <div className="nums text-[12px] text-quaternary w-6">
                     {String(i + 1).padStart(2, "0")}
                   </div>
-                  <div className="nums text-[11px] text-stone-400 w-10">{o.a}</div>
-                  <div className="text-[13px] text-stone-100">{o.t}</div>
+                  <div className="nums text-[11px] text-tertiary w-10">{o.a}</div>
+                  <div className="text-[13px] text-primary">{o.t}</div>
                   <div className="hidden md:flex items-center gap-1.5 mr-4">
-                    <SegBar v={o.r * n.rules} color="#7DD3FC" />
-                    <SegBar v={o.p * n.patterns} color="#60A5FA" />
-                    <SegBar v={o.j * n.judgment} color="#FFDB51" />
+                    <SegBar v={o.r * n.rules} color="var(--signal-rules)" />
+                    <SegBar v={o.p * n.patterns} color="var(--signal-patterns)" />
+                    <SegBar v={o.j * n.judgment} color="var(--signal-judgment)" />
                   </div>
-                  <div className="nums text-[13px]" style={{ color: i === 0 ? "#FFDB51" : "#FAFAF9" }}>
+                  <div className="nums text-[13px]" style={{ color: i === 0 ? "var(--gold-cta)" : "var(--text-primary)" }}>
                     {o.s.toFixed(2)}
                   </div>
                 </motion.li>
               ))}
             </motion.ul>
-            <div className="mt-5 pt-4 border-t border-stone-50/10 flex items-baseline justify-between text-[11px] text-stone-500">
+            <div className="mt-5 pt-4 flex items-baseline justify-between text-[11px] text-quaternary" style={{ borderTop: "1px solid var(--border-default)" }}>
               <span>Composite = Σ (signal × weight)</span>
               <span className="nums">
                 Top: {scored[0].id} · {scored[0].s.toFixed(2)}
@@ -303,7 +303,7 @@ export function Different() {
 
 function SegBar({ v, color }: { v: number; color: string }) {
   return (
-    <div className="w-7 h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.08)" }}>
+    <div className="w-7 h-1.5 rounded-full overflow-hidden" style={{ background: "var(--border-default)" }}>
       <motion.div
         animate={{ width: `${Math.min(100, v * 200)}%` }}
         transition={{ type: "spring", stiffness: 200, damping: 30 }}
@@ -457,7 +457,7 @@ export function Example() {
       id="example"
       aria-labelledby="example-title"
       className="relative py-28 md:py-36"
-      style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
+      style={{ borderTop: "1px solid var(--border-subtle)" }}
     >
       <div className="px-6 md:px-12 lg:px-20">
         <SectionHeader
@@ -469,7 +469,7 @@ export function Example() {
             <>
               From <span className="nums">47</span> on the watchlist, three earned a place in this
               week's brief — each with the chart that explains it and the analyst who signed it.
-              Move the weights in <a href="#different" className="underline underline-offset-2 hover:text-stone-100">§02</a>; the brief follows.
+              Move the weights in <a href="#different" className="underline underline-offset-2 hover:text-primary">§02</a>; the brief follows.
             </>
           }
           wide
@@ -481,16 +481,16 @@ export function Example() {
           className="relative mx-3 md:mx-6 lg:mx-10 p-8 md:p-12 rounded-sm"
           style={{
             background:
-              "linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015))",
-            border: "1px solid rgba(255,255,255,0.08)",
+              "linear-gradient(180deg, var(--panel-from), var(--panel-to))",
+            border: "1px solid var(--panel-border)",
             boxShadow: "0 60px 120px -50px rgba(0,0,0,0.7)",
           }}
         >
           {/* Brief masthead */}
-          <div className="flex items-baseline justify-between mb-10 pb-6 border-b border-stone-50/10 gap-6 flex-wrap">
+          <div className="flex items-baseline justify-between mb-10 pb-6 gap-6 flex-wrap" style={{ borderBottom: "1px solid var(--border-default)" }}>
             <div>
               <div className={eyebrow + " mb-2"}>Orla Strategy Brief · Issue No. 17</div>
-              <h3 className="serif text-stone-50" style={{ fontSize: "1.75rem", fontWeight: 500 }}>
+              <h3 className="serif text-primary" style={{ fontSize: "1.75rem", fontWeight: 500 }}>
                 This week's three
               </h3>
             </div>
@@ -515,7 +515,7 @@ export function Example() {
             </motion.div>
           </AnimatePresence>
 
-          <div className="my-10 h-px" style={{ background: "rgba(255,255,255,0.06)" }} />
+          <div className="my-10 h-px" style={{ background: "var(--border-subtle)" }} />
 
           {/* Two compact below */}
           <div className="grid md:grid-cols-2 gap-10 md:gap-12">
@@ -544,14 +544,14 @@ export function Example() {
           </div>
 
           {/* Connective lead-in to §04 Methodology */}
-          <div className="mt-12 pt-6 border-t border-stone-50/10 flex items-baseline justify-between gap-4 flex-wrap">
-            <p className="text-stone-400 text-[12.5px] leading-relaxed max-w-2xl">
+          <div className="mt-12 pt-6 flex items-baseline justify-between gap-4 flex-wrap" style={{ borderTop: "1px solid var(--border-default)" }}>
+            <p className="text-tertiary text-[12.5px] leading-relaxed max-w-2xl">
               Every figure above resolves to a named source, with the refresh cadence stated and
               the analyst — when one was involved — signed.
             </p>
             <a
               href="#methodology"
-              className="nums text-[12px] text-stone-300 hover:text-stone-50 transition whitespace-nowrap"
+              className="nums text-[12px] text-secondary hover:text-primary transition whitespace-nowrap"
             >
               How we know →
             </a>
@@ -564,14 +564,14 @@ export function Example() {
 
 function BriefEntry({ b, featured = false }: { b: Brief; featured?: boolean }) {
   const tagColor =
-    b.tag === "Rule" ? "#7DD3FC" : b.tag === "Pattern" ? "#60A5FA" : "#FFDB51";
+    b.tag === "Rule" ? "var(--signal-rules)" : b.tag === "Pattern" ? "var(--signal-patterns)" : "var(--signal-judgment)";
   return (
     <div className={featured ? "grid lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-14" : ""}>
       <div>
         <div className="flex items-baseline justify-between mb-3">
           <div className="flex items-baseline gap-3">
-            <div className="nums text-[12px] text-stone-500">#{b.rank}</div>
-            <div className="nums text-[11px] text-stone-400">
+            <div className="nums text-[12px] text-quaternary">#{b.rank}</div>
+            <div className="nums text-[11px] text-tertiary">
               {b.agency} · {b.id}
             </div>
           </div>
@@ -583,7 +583,7 @@ function BriefEntry({ b, featured = false }: { b: Brief; featured?: boolean }) {
           </div>
         </div>
         <h4
-          className="serif text-stone-50 mb-4"
+          className="serif text-primary mb-4"
           style={{
             fontSize: featured ? "1.5rem" : "1.125rem",
             fontWeight: 500,
@@ -592,20 +592,20 @@ function BriefEntry({ b, featured = false }: { b: Brief; featured?: boolean }) {
         >
           {b.title}
         </h4>
-        <div className="grid grid-cols-3 gap-4 mb-5 pb-5 border-b border-stone-50/10">
+        <div className="grid grid-cols-3 gap-4 mb-5 pb-5" style={{ borderBottom: "1px solid var(--border-default)" }}>
           <Stat label="Ceiling" v={b.ceiling} />
           <Stat label="Decision" v={b.decision} />
           <Stat label="Composite" v={b.composite.toFixed(2)} highlight />
         </div>
         <p
-          className="text-stone-200 leading-relaxed mb-5"
+          className="text-secondary leading-relaxed mb-5"
           style={{ fontSize: featured ? "1rem" : "0.9375rem" }}
         >
           {b.note}
         </p>
         <div className="flex items-center justify-between flex-wrap gap-3">
           <ConfidenceBar conf={b.conf} range={b.confRange} />
-          <div className="nums text-[11px] text-stone-400">— {b.analyst}</div>
+          <div className="nums text-[11px] text-tertiary">— {b.analyst}</div>
         </div>
       </div>
 
@@ -628,10 +628,10 @@ function Stat({
 }) {
   return (
     <div>
-      <div className="text-[10px] uppercase tracking-[0.18em] text-stone-500 smallcaps mb-1">
+      <div className="text-[10px] uppercase tracking-[0.18em] text-quaternary smallcaps mb-1">
         {label}
       </div>
-      <div className="nums text-[14px]" style={highlight ? { color: "#FFDB51" } : undefined}>
+      <div className="nums text-[14px]" style={highlight ? { color: "var(--gold-cta)" } : undefined}>
         {v}
       </div>
     </div>
@@ -647,11 +647,11 @@ function ConfidenceBar({
 }) {
   return (
     <div className="flex items-center gap-3">
-      <div className="smallcaps text-[10px] tracking-[0.22em] text-stone-400">Confidence</div>
+      <div className="smallcaps text-[10px] tracking-[0.22em] text-tertiary">Confidence</div>
       <div className="relative w-32 h-3">
         <div
           className="absolute inset-y-1 inset-x-0 rounded-full"
-          style={{ background: "rgba(255,255,255,0.08)" }}
+          style={{ background: "var(--border-default)" }}
         />
         <div
           className="absolute inset-y-1 rounded-full"
@@ -663,10 +663,10 @@ function ConfidenceBar({
         />
         <div
           className="absolute top-0 bottom-0 w-px"
-          style={{ left: `${conf * 100}%`, background: "#7DD3FC" }}
+          style={{ left: `${conf * 100}%`, background: "var(--signal-rules)" }}
         />
       </div>
-      <div className="nums text-[12px] text-stone-100">{conf.toFixed(2)}</div>
+      <div className="nums text-[12px] text-primary">{conf.toFixed(2)}</div>
     </div>
   );
 }
@@ -705,8 +705,8 @@ function Sparkline({
     <div
       className="rounded-sm overflow-hidden"
       style={{
-        background: "rgba(255,255,255,0.018)",
-        border: "1px solid rgba(255,255,255,0.05)",
+        background: "var(--panel-row-hover)",
+        border: "1px solid var(--border-subtle)",
       }}
     >
       <svg viewBox={`0 0 ${w} ${h}`} className="w-full h-auto block">
@@ -723,7 +723,7 @@ function Sparkline({
             x2={w - pad}
             y1={pad + p * (h - pad * 2)}
             y2={pad + p * (h - pad * 2)}
-            stroke="rgba(255,255,255,0.05)"
+            stroke="var(--border-subtle)"
             strokeDasharray="2 4"
           />
         ))}
@@ -765,7 +765,7 @@ function Sparkline({
           <text
             x={ann.x + (annotation.idx > series.length / 2 ? -8 : 12)}
             y={pad + 14}
-            fill="#FAFAF9"
+            fill="var(--text-primary)"
             fontSize="10"
             fontFamily="IBM Plex Sans, sans-serif"
             textAnchor={annotation.idx > series.length / 2 ? "end" : "start"}
@@ -776,7 +776,7 @@ function Sparkline({
         <text
           x={w - pad}
           y={yScale(last) - 8}
-          fill="#7DD3FC"
+          fill="var(--signal-rules)"
           fontSize="11"
           fontFamily="IBM Plex Sans, sans-serif"
           textAnchor="end"
@@ -786,7 +786,7 @@ function Sparkline({
         <text
           x={pad}
           y={h - 4}
-          fill="rgba(255,255,255,0.3)"
+          fill="var(--text-muted)"
           fontSize="9"
           fontFamily="IBM Plex Sans, sans-serif"
         >
@@ -795,7 +795,7 @@ function Sparkline({
         <text
           x={w - pad}
           y={h - 4}
-          fill="rgba(255,255,255,0.3)"
+          fill="var(--text-muted)"
           fontSize="9"
           fontFamily="IBM Plex Sans, sans-serif"
           textAnchor="end"
@@ -830,7 +830,7 @@ export function Pricing() {
       id="pricing"
       aria-labelledby="pricing-title"
       className={"relative " + sectionPad}
-      style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
+      style={{ borderTop: "1px solid var(--border-subtle)" }}
     >
       <SectionHeader
         id="pricing-title"
@@ -844,7 +844,7 @@ export function Pricing() {
       <Reveal>
         <div className="rounded-sm overflow-hidden" style={panel}>
           {/* Header row: tier names + prices */}
-          <div className="grid grid-cols-[1.3fr_1fr_1fr_1fr] border-b border-stone-50/10">
+          <div className="grid grid-cols-[1.3fr_1fr_1fr_1fr]" style={{ borderBottom: "1px solid var(--border-default)" }}>
             <div className={"p-6 md:p-8 " + eyebrow}>Tier</div>
             {tiers.map((t) => (
               <div
@@ -863,12 +863,12 @@ export function Pricing() {
                 {t.featured && (
                   <div
                     className="absolute top-0 left-0 right-0 h-px"
-                    style={{ background: "#FFDB51" }}
+                    style={{ background: "var(--gold-cta)" }}
                   />
                 )}
                 <div className="flex items-baseline justify-between mb-2">
                   <div
-                    className="text-stone-50"
+                    className="text-primary"
                     style={{ fontSize: "1.125rem", fontWeight: 500 }}
                   >
                     {t.name}
@@ -876,7 +876,7 @@ export function Pricing() {
                   {t.featured && (
                     <div
                       className="text-[10px] tracking-[0.2em] uppercase mono"
-                      style={{ color: "#FFDB51" }}
+                      style={{ color: "var(--gold-cta)" }}
                     >
                       Most chosen
                     </div>
@@ -884,12 +884,12 @@ export function Pricing() {
                 </div>
                 <div className="flex items-baseline gap-2">
                   <span
-                    className="nums-lg text-stone-50"
+                    className="nums-lg text-primary"
                     style={{ fontSize: "1.875rem", fontWeight: 500 }}
                   >
                     {t.price}
                   </span>
-                  <span className="text-stone-400 text-[13px]">/ month</span>
+                  <span className="text-tertiary text-[13px]">/ month</span>
                 </div>
               </div>
             ))}
@@ -901,11 +901,11 @@ export function Pricing() {
               key={row.k}
               className="grid grid-cols-[1.3fr_1fr_1fr_1fr]"
               style={{
-                borderBottom: i === rows.length - 1 ? undefined : "1px solid rgba(255,255,255,0.05)",
+                borderBottom: i === rows.length - 1 ? undefined : "1px solid var(--border-subtle)",
               }}
             >
               <div className="p-5 md:p-6">
-                <div className="text-[12px] tracking-[0.12em] uppercase text-stone-500">
+                <div className="text-[12px] tracking-[0.12em] uppercase text-quaternary">
                   {row.k}
                 </div>
               </div>
@@ -923,7 +923,7 @@ export function Pricing() {
                       : undefined
                   }
                 >
-                  <div className="text-[14px] text-stone-100">
+                  <div className="text-[14px] text-primary">
                     {/^[\d.\-–—+]+$/.test(cell) ? (
                       <span className="nums">{cell}</span>
                     ) : (
@@ -937,10 +937,10 @@ export function Pricing() {
 
           {/* Footer CTA row */}
           <div
-            className="grid grid-cols-[1.3fr_1fr_1fr_1fr] border-t border-stone-50/10"
-            style={{ background: "rgba(255,255,255,0.02)" }}
+            className="grid grid-cols-[1.3fr_1fr_1fr_1fr]"
+            style={{ borderTop: "1px solid var(--border-default)", background: "var(--panel-row-hover)" }}
           >
-            <div className="p-5 md:p-6 text-[12px] tracking-[0.12em] uppercase text-stone-500">
+            <div className="p-5 md:p-6 text-[12px] tracking-[0.12em] uppercase text-quaternary">
               To begin
             </div>
             {tiers.map((t) => (
@@ -962,10 +962,10 @@ export function Pricing() {
                   className="inline-block text-center px-4 py-2.5 rounded-sm transition text-[13px]"
                   style={
                     t.featured
-                      ? { background: "#FFDB51", color: "#141827", fontWeight: 500 }
+                      ? { background: "var(--gold-cta)", color: "var(--cta-text)", fontWeight: 500 }
                       : {
-                          border: "1px solid rgba(250,250,249,0.2)",
-                          color: "#FAFAF9",
+                          border: "1px solid var(--border-strong)",
+                          color: "var(--text-primary)",
                         }
                   }
                 >
@@ -1011,7 +1011,7 @@ export function Personas() {
     },
   ];
   return (
-    <section id="who" aria-labelledby="who-title" className={"relative " + sectionPad} style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+    <section id="who" aria-labelledby="who-title" className={"relative " + sectionPad} style={{ borderTop: "1px solid var(--border-subtle)" }}>
       <SectionHeader
         id="who-title"
         num="06"
@@ -1024,15 +1024,15 @@ export function Personas() {
             <div className="p-8 md:p-12 h-full rounded-sm panel-hover" style={panel}>
               <div className="flex items-baseline justify-between mb-5">
                 <h3
-                  className="serif text-stone-50"
+                  className="serif text-primary"
                   style={{ fontSize: "1.25rem", fontWeight: 500 }}
                 >
                   {p.who}
                 </h3>
-                <div className="nums text-[12px] text-stone-400">{p.stat}</div>
+                <div className="nums text-[12px] text-tertiary">{p.stat}</div>
               </div>
               <p
-                className="text-stone-300 leading-relaxed"
+                className="text-secondary leading-relaxed"
                 style={{ fontSize: "0.9375rem" }}
               >
                 {p.body}
@@ -1060,33 +1060,33 @@ export function Trust() {
       id="trust"
       aria-labelledby="trust-title"
       className="relative px-6 md:px-12 lg:px-20 py-20 md:py-24"
-      style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
+      style={{ borderTop: "1px solid var(--border-subtle)" }}
     >
       <div className="grid lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-20 items-start">
         <Reveal>
           <div className="flex items-center gap-4 mb-6">
-            <div className="nums text-[12px] text-stone-500">§&nbsp;07</div>
-            <div className="h-px flex-1 max-w-20" style={{ background: "rgba(255,255,255,0.12)" }} />
+            <div className="nums text-[12px] text-quaternary">§&nbsp;07</div>
+            <div className="h-px flex-1 max-w-20" style={{ background: "var(--border-strong)" }} />
             <div className={eyebrow}>Privacy & trust</div>
           </div>
-          <h2 id="trust-title" className="serif text-stone-50 mb-5" style={{ ...h2Style, fontSize: "clamp(1.5rem, 2.6vw, 2rem)" }}>
+          <h2 id="trust-title" className="serif text-primary mb-5" style={{ ...h2Style, fontSize: "clamp(1.5rem, 2.6vw, 2rem)" }}>
             Stated plainly, because fine print is how firms get burned.
           </h2>
-          <p className="text-stone-400 leading-relaxed" style={{ fontSize: "0.9375rem" }}>
+          <p className="text-tertiary leading-relaxed" style={{ fontSize: "0.9375rem" }}>
             These are not footer links; they are the deal.
           </p>
         </Reveal>
 
         <Reveal delay={0.15}>
-          <dl className="divide-y divide-stone-50/10">
+          <dl style={{ borderColor: "var(--border-default)" }}>
             {items.map(([k, v], i) => (
-              <div key={k} className="grid grid-cols-[auto_1fr] gap-8 py-5 first:pt-0 items-baseline">
-                <dt className="nums text-[11px] text-stone-500 w-8">0{i + 1}</dt>
+              <div key={k} className="grid grid-cols-[auto_1fr] gap-8 py-5 first:pt-0 items-baseline" style={{ borderBottom: i < items.length - 1 ? "1px solid var(--border-default)" : undefined }}>
+                <dt className="nums text-[11px] text-quaternary w-8">0{i + 1}</dt>
                 <dd>
-                  <div className="text-stone-50 mb-1" style={{ fontSize: "0.9375rem", fontWeight: 500 }}>
+                  <div className="text-primary mb-1" style={{ fontSize: "0.9375rem", fontWeight: 500 }}>
                     {k}
                   </div>
-                  <div className="text-stone-400 leading-relaxed" style={{ fontSize: "0.9375rem" }}>
+                  <div className="text-tertiary leading-relaxed" style={{ fontSize: "0.9375rem" }}>
                     {v}
                   </div>
                 </dd>
@@ -1106,22 +1106,22 @@ export function Footer() {
   return (
     <footer
       className="px-6 md:px-12 lg:px-20 py-14"
-      style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
+      style={{ borderTop: "1px solid var(--panel-border)" }}
     >
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
         <div
-          className="text-stone-50 tracking-[-0.01em]"
+          className="text-primary tracking-[-0.01em]"
           style={{ fontSize: "1.25rem", fontWeight: 600 }}
         >
           Orla
         </div>
-        <div className="flex flex-wrap gap-x-8 gap-y-3 text-[13px] text-stone-400">
-          <a href="#" className="hover:text-stone-100 transition">Privacy</a>
-          <a href="#" className="hover:text-stone-100 transition">Terms</a>
-          <a href="#" className="hover:text-stone-100 transition">Security</a>
-          <a href="#" className="hover:text-stone-100 transition">Contact</a>
+        <div className="flex flex-wrap gap-x-8 gap-y-3 text-[13px] text-tertiary">
+          <a href="#" className="hover:text-primary transition">Privacy</a>
+          <a href="#" className="hover:text-primary transition">Terms</a>
+          <a href="#" className="hover:text-primary transition">Security</a>
+          <a href="#" className="hover:text-primary transition">Contact</a>
         </div>
-        <div className="nums text-[12px] text-stone-500">© 2026 Orla Intelligence</div>
+        <div className="nums text-[12px] text-quaternary">© 2026 Orla Intelligence</div>
       </div>
     </footer>
   );

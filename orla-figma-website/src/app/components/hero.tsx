@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { Fragment, useEffect, useState } from "react";
+import { Sun, Moon } from "lucide-react";
 
 type Opp = {
   id: string;
@@ -27,7 +28,37 @@ const FUNNEL = [
   { label: "This week's brief",    n: "3",     sub: "named recommendations" },
 ];
 
+function useTheme() {
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  
+  useEffect(() => {
+    const stored = localStorage.getItem("orla-theme") as "dark" | "light" | null;
+    const initial = stored || "dark";
+    setTheme(initial);
+    if (initial === "light") {
+      document.documentElement.dataset.theme = "light";
+    } else {
+      delete document.documentElement.dataset.theme;
+    }
+  }, []);
+  
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    localStorage.setItem("orla-theme", next);
+    if (next === "light") {
+      document.documentElement.dataset.theme = "light";
+    } else {
+      delete document.documentElement.dataset.theme;
+    }
+  };
+  
+  return { theme, toggleTheme };
+}
+
 export function Hero() {
+  const { theme, toggleTheme } = useTheme();
+  
   return (
     <section className="relative min-h-screen px-6 md:px-12 lg:px-20 pt-8 pb-20 overflow-hidden">
       <OpportunityField />
@@ -42,18 +73,34 @@ export function Hero() {
 
       <nav className="relative flex items-center justify-between mb-24 md:mb-28">
         <div />
-        <div className="hidden md:flex items-center gap-9 text-[13px] text-stone-300/80">
-          <a href="#different" className="hover:text-stone-100 transition">How it works</a>
-          <a href="#example" className="hover:text-stone-100 transition">Example brief</a>
-          <a href="#methodology" className="hover:text-stone-100 transition">Methodology</a>
-          <a href="#pricing" className="hover:text-stone-100 transition">Pricing</a>
+        <div className="hidden md:flex items-center gap-9 text-[13px] text-secondary">
+          <a href="#different" className="hover:text-primary transition">How it works</a>
+          <a href="#example" className="hover:text-primary transition">Example brief</a>
+          <a href="#methodology" className="hover:text-primary transition">Methodology</a>
+          <a href="#pricing" className="hover:text-primary transition">Pricing</a>
         </div>
-        <a
-          href="#pricing"
-          className="text-[13px] px-4 py-2 rounded-sm border border-stone-50/15 text-stone-100 hover:border-stone-50/40 transition"
-        >
-          Sign in
-        </a>
+        <div className="flex items-center gap-4">
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className="p-2 cursor-pointer transition-colors"
+            style={{ color: "var(--text-primary)" }}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {theme === "dark" ? (
+              <Sun size={18} className="hover:text-[var(--gold-accent)] transition-colors" />
+            ) : (
+              <Moon size={18} className="hover:text-[var(--gold-accent)] transition-colors" />
+            )}
+          </button>
+          <a
+            href="#pricing"
+            className="text-[13px] px-4 py-2 rounded-sm transition"
+            style={{ border: "1px solid var(--border-strong)", color: "var(--text-primary)" }}
+          >
+            Sign in
+          </a>
+        </div>
       </nav>
 
       <div className="relative grid lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-16 items-center">
@@ -64,19 +111,19 @@ export function Hero() {
         >
           <div className="flex items-center gap-4 mb-8">
             <div className="h-px w-12" style={{ background: "#FFDB51" }} />
-            <div className="text-[11px] tracking-[0.24em] uppercase text-stone-400">
+            <div className="text-[11px] tracking-[0.24em] uppercase text-tertiary">
               Federal BD Intelligence
             </div>
           </div>
           <h1
-            className="serif text-stone-50 leading-[1.04] tracking-[-0.015em] mb-8"
+            className="serif text-primary leading-[1.04] tracking-[-0.015em] mb-8"
             style={{ fontSize: "clamp(2.5rem, 5.5vw, 4.75rem)", fontWeight: 500 }}
           >
             From <span className="nums" style={{ fontSize: "0.92em" }}>$680B</span> in federal spend,
             <br />
-            <span className="text-stone-400">the three things worth your week.</span>
+            <span className="text-tertiary">the three things worth your week.</span>
           </h1>
-          <p className="text-stone-300 max-w-xl leading-relaxed mb-10" style={{ fontSize: "1.0625rem" }}>
+          <p className="text-secondary max-w-xl leading-relaxed mb-10" style={{ fontSize: "1.0625rem" }}>
             Orla narrows <span className="nums">4,217</span> active opportunities to a Friday brief —
             ranked, scored, written in plain English. The funnel is the product.
           </p>
@@ -84,15 +131,15 @@ export function Hero() {
             <a
               href="#pricing"
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-sm transition"
-              style={{ background: "#FFDB51", color: "#141827", fontWeight: 500 }}
+              style={{ background: "var(--gold-cta)", color: "var(--cta-text)", fontWeight: 500 }}
             >
               Start your 14-day trial
             </a>
-            <a href="#example" className="text-[14px] text-stone-300 hover:text-stone-100 transition">
+            <a href="#example" className="text-[14px] text-secondary hover:text-primary transition">
               See an example brief →
             </a>
           </div>
-          <div className="mt-10 text-[12px] text-stone-400">
+          <div className="mt-10 text-[12px] text-tertiary">
             <span className="nums">No credit card.</span> Cancel anytime.{" "}
             <span className="nums">60-day</span> retention after cancel.
           </div>
@@ -104,10 +151,10 @@ export function Hero() {
           transition={{ duration: 1.2, delay: 0.2, ease: [0.2, 0.7, 0.2, 1] }}
         >
           <div className="flex items-baseline justify-between mb-4">
-            <div className="text-[10px] tracking-[0.28em] uppercase text-stone-500 smallcaps">
+            <div className="text-[10px] tracking-[0.28em] uppercase text-quaternary smallcaps">
               Orla · Live scoring
             </div>
-            <div className="nums text-[11px] text-stone-400">FY26 · WK 17</div>
+            <div className="nums text-[11px] text-tertiary">FY26 · WK 17</div>
           </div>
           <ScoringPanel opps={opps} />
         </motion.div>
@@ -148,21 +195,21 @@ function ScoringPanel({ opps }: { opps: Opp[] }) {
     <div
       className="rounded-sm relative backdrop-blur-sm"
       style={{
-        background: "linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012))",
-        border: "1px solid rgba(255,255,255,0.08)",
+        background: "linear-gradient(180deg, var(--panel-from), var(--panel-to))",
+        border: "1px solid var(--panel-border)",
         boxShadow: "0 60px 120px -50px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.02) inset",
       }}
     >
-      <div className="flex items-baseline justify-between px-6 md:px-7 py-5 border-b border-stone-50/10">
+      <div className="flex items-baseline justify-between px-6 md:px-7 py-5" style={{ borderBottom: "1px solid var(--border-default)" }}>
         <div className="flex items-center gap-3">
-          <span className="relative inline-block w-1.5 h-1.5 rounded-full" style={{ background: "#7DD3FC" }}>
-            <span className="absolute inset-0 rounded-full animate-ping" style={{ background: "#7DD3FC", opacity: 0.5 }} />
+          <span className="relative inline-block w-1.5 h-1.5 rounded-full" style={{ background: "var(--signal-rules)" }}>
+            <span className="absolute inset-0 rounded-full animate-ping" style={{ background: "var(--signal-rules)", opacity: 0.5 }} />
           </span>
-          <div className="smallcaps text-[10px] tracking-[0.24em] text-stone-300">
+          <div className="smallcaps text-[10px] tracking-[0.24em] text-secondary">
             Live · Opportunity scoring
           </div>
         </div>
-        <div className="nums text-[10px] text-stone-500">
+        <div className="nums text-[10px] text-quaternary">
           Last sync · 14:00 ET · next · {String(47 - (t % 47)).padStart(2, "0")}m
         </div>
       </div>
@@ -172,11 +219,11 @@ function ScoringPanel({ opps }: { opps: Opp[] }) {
           className="grid gap-y-3.5 text-[12px]"
           style={{ gridTemplateColumns: "auto 1fr auto auto auto" }}
         >
-          <div className="nums text-[9px] uppercase tracking-[0.2em] text-stone-500">ID</div>
-          <div className="text-[9px] uppercase tracking-[0.2em] text-stone-500 smallcaps">Opportunity</div>
-          <div className="nums text-[9px] uppercase tracking-[0.2em] text-stone-500 text-right">Cap</div>
-          <div className="nums text-[9px] uppercase tracking-[0.2em] text-stone-500 text-right pl-3">Fit</div>
-          <div className="nums text-[9px] uppercase tracking-[0.2em] text-stone-500 text-right pl-4">Dec.</div>
+          <div className="nums text-[9px] uppercase tracking-[0.2em] text-quaternary">ID</div>
+          <div className="text-[9px] uppercase tracking-[0.2em] text-quaternary smallcaps">Opportunity</div>
+          <div className="nums text-[9px] uppercase tracking-[0.2em] text-quaternary text-right">Cap</div>
+          <div className="nums text-[9px] uppercase tracking-[0.2em] text-quaternary text-right pl-3">Fit</div>
+          <div className="nums text-[9px] uppercase tracking-[0.2em] text-quaternary text-right pl-4">Dec.</div>
 
           {opps.map((o, i) => {
             const jitter = Math.sin(t * 0.7 + i * 1.1) * 0.008;
@@ -184,27 +231,27 @@ function ScoringPanel({ opps }: { opps: Opp[] }) {
             const fit = Math.max(0, Math.min(1, o.fit - jitter * 0.7));
             return (
               <Fragment key={o.id}>
-                <div className="nums text-stone-500">{o.id}</div>
-                <div className="text-stone-100 leading-tight">
-                  <span className="nums text-[11px] text-stone-400 mr-2">{o.agency}</span>
+                <div className="nums text-quaternary">{o.id}</div>
+                <div className="text-primary leading-tight">
+                  <span className="nums text-[11px] text-tertiary mr-2">{o.agency}</span>
                   {o.title}
                 </div>
-                <div className="nums text-stone-100 text-right">{cap.toFixed(2)}</div>
+                <div className="nums text-primary text-right">{cap.toFixed(2)}</div>
                 <div
-                  className="nums text-stone-100 text-right pl-3"
-                  style={o.hot ? { color: "#FFDB51" } : undefined}
+                  className="nums text-primary text-right pl-3"
+                  style={o.hot ? { color: "var(--gold-cta)" } : undefined}
                 >
                   {fit.toFixed(2)}
                 </div>
-                <div className="nums text-stone-400 text-right pl-4">{o.decision}</div>
+                <div className="nums text-tertiary text-right pl-4">{o.decision}</div>
               </Fragment>
             );
           })}
         </div>
 
-        <div className="mt-6 pt-4 border-t border-stone-50/10 flex items-baseline justify-between">
-          <div className="smallcaps text-[10px] tracking-[0.24em] text-stone-400">Sources synced</div>
-          <div className="nums text-[10px] text-stone-400">
+        <div className="mt-6 pt-4 flex items-baseline justify-between" style={{ borderTop: "1px solid var(--border-default)" }}>
+          <div className="smallcaps text-[10px] tracking-[0.24em] text-tertiary">Sources synced</div>
+          <div className="nums text-[10px] text-tertiary">
             SAM · FPDS · USAspending · 04.26 · 14:00
           </div>
         </div>
@@ -222,17 +269,17 @@ function FunnelStrip() {
       transition={{ duration: 1.0, delay: 0.6, ease: [0.2, 0.7, 0.2, 1] }}
     >
       <div className="flex items-center gap-4 mb-5">
-        <div className="nums text-[11px] text-stone-500">§ 00</div>
-        <div className="h-px flex-1 max-w-20" style={{ background: "rgba(255,255,255,0.12)" }} />
-        <div className="text-[11px] tracking-[0.24em] uppercase text-stone-400 smallcaps">
+        <div className="nums text-[11px] text-quaternary">§ 00</div>
+        <div className="h-px flex-1 max-w-20" style={{ background: "var(--border-strong)" }} />
+        <div className="text-[11px] tracking-[0.24em] uppercase text-tertiary smallcaps">
           The funnel
         </div>
       </div>
       <div
         className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-sm overflow-hidden"
         style={{
-          background: "rgba(255,255,255,0.06)",
-          border: "1px solid rgba(255,255,255,0.06)",
+          background: "var(--border-default)",
+          border: "1px solid var(--border-default)",
         }}
       >
         {FUNNEL.map((s, i) => (
@@ -241,38 +288,38 @@ function FunnelStrip() {
             className="relative px-6 py-7"
             style={{
               background:
-                "linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.008))",
+                "linear-gradient(180deg, var(--panel-from), var(--panel-to))",
             }}
           >
             <div className="flex items-baseline justify-between mb-3">
-              <div className="text-[10px] uppercase tracking-[0.22em] smallcaps text-stone-500">
+              <div className="text-[10px] uppercase tracking-[0.22em] smallcaps text-quaternary">
                 {s.label}
               </div>
-              <div className="nums text-[10px] text-stone-600">
+              <div className="nums text-[10px] text-muted">
                 {String(i + 1).padStart(2, "0")}/04
               </div>
             </div>
             <div className="flex items-baseline gap-3">
               <span
-                className="nums text-stone-50"
+                className="nums text-primary"
                 style={{ fontSize: "1.875rem", letterSpacing: "-0.01em" }}
               >
                 {s.n}
               </span>
               {i < FUNNEL.length - 1 && (
-                <span aria-hidden className="text-stone-600 mono text-[14px]">→</span>
+                <span aria-hidden className="text-muted mono text-[14px]">→</span>
               )}
               {i === FUNNEL.length - 1 && (
                 <span
                   aria-hidden
                   className="nums text-[10px] uppercase tracking-[0.18em]"
-                  style={{ color: "#FFDB51" }}
+                  style={{ color: "var(--gold-cta)" }}
                 >
                   · brief
                 </span>
               )}
             </div>
-            <div className="text-[12px] text-stone-400 mt-1.5">{s.sub}</div>
+            <div className="text-[12px] text-tertiary mt-1.5">{s.sub}</div>
           </div>
         ))}
       </div>

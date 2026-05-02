@@ -1,6 +1,40 @@
 @custom-variant dark (&:is(.dark *));
 
+/* ─────────────────────────────────────────────
+   Orla Theme System — Dark mode is default
+   ───────────────────────────────────────────── */
 :root {
+  /* Surface */
+  --bg-from: #050814;
+  --bg-to: #0B1433;
+  
+  /* Text */
+  --text-primary: #FAFAF9;
+  --text-secondary: rgba(255, 255, 255, 0.85);
+  --text-tertiary: rgba(255, 255, 255, 0.6);
+  --text-quaternary: rgba(255, 255, 255, 0.4);
+  --text-muted: rgba(255, 255, 255, 0.3);
+  
+  /* Borders & dividers */
+  --border-strong: rgba(255, 255, 255, 0.15);
+  --border-default: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  
+  /* Panel surfaces */
+  --panel-from: rgba(255, 255, 255, 0.045);
+  --panel-to: rgba(255, 255, 255, 0.012);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --panel-row-hover: rgba(255, 255, 255, 0.018);
+  
+  /* Brand accents (same in both themes) */
+  --gold-cta: #FFDB51;
+  --gold-accent: #F5B700;
+  --signal-rules: #7DD3FC;
+  --signal-patterns: #60A5FA;
+  --signal-judgment: #FFDB51;
+  
+  /* CTA text color */
+  --cta-text: #16171c;
   --font-size: 16px;
   --background: #ffffff;
   --foreground: oklch(0.145 0 0);
@@ -39,6 +73,29 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+}
+
+/* Light theme overrides */
+[data-theme="light"] {
+  --bg-from: #f9fafb;
+  --bg-to: #e5e7eb;
+  
+  --text-primary: #16171c;
+  --text-secondary: rgba(22, 23, 28, 0.85);
+  --text-tertiary: rgba(22, 23, 28, 0.6);
+  --text-quaternary: rgba(22, 23, 28, 0.4);
+  --text-muted: rgba(22, 23, 28, 0.3);
+  
+  --border-strong: rgba(22, 23, 28, 0.15);
+  --border-default: rgba(22, 23, 28, 0.08);
+  --border-subtle: rgba(22, 23, 28, 0.05);
+  
+  --panel-from: rgba(22, 23, 28, 0.04);
+  --panel-to: rgba(22, 23, 28, 0.01);
+  --panel-border: rgba(22, 23, 28, 0.08);
+  --panel-row-hover: rgba(22, 23, 28, 0.02);
+  
+  /* Brand accents stay the same — they work on both surfaces */
 }
 
 .dark {
@@ -118,6 +175,13 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 }
+
+/* Theme-aware text utility classes */
+.text-primary   { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary  { color: var(--text-tertiary); }
+.text-quaternary { color: var(--text-quaternary); }
+.text-muted     { color: var(--text-muted); }
 
 @layer base {
   * {

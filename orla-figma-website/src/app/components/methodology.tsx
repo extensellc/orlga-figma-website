@@ -1,11 +1,11 @@
 import { Reveal } from "./reveal";
 
 const sectionPad = "px-6 md:px-12 lg:px-20 py-28 md:py-36";
-const eyebrow = "text-[11px] tracking-[0.24em] uppercase text-stone-400 smallcaps";
+const eyebrow = "text-[11px] tracking-[0.24em] uppercase text-tertiary smallcaps";
 const panel: React.CSSProperties = {
   background:
-    "linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.012))",
-  border: "1px solid rgba(255,255,255,0.06)",
+    "linear-gradient(180deg, var(--panel-from), var(--panel-to))",
+  border: "1px solid var(--border-subtle)",
   boxShadow: "0 1px 0 rgba(255,255,255,0.04) inset",
 };
 
@@ -59,18 +59,18 @@ export function Methodology() {
     <section
       id="methodology"
       className={"relative " + sectionPad}
-      style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
+      style={{ borderTop: "1px solid var(--border-subtle)" }}
       aria-labelledby="methodology-title"
     >
       <Reveal>
         <div className="flex items-center gap-4 mb-6">
-          <div className="nums text-[12px] text-stone-500">§&nbsp;04</div>
-          <div className="h-px flex-1 max-w-20" style={{ background: "rgba(255,255,255,0.12)" }} />
+          <div className="nums text-[12px] text-quaternary">§&nbsp;04</div>
+          <div className="h-px flex-1 max-w-20" style={{ background: "var(--border-strong)" }} />
           <div className={eyebrow}>How we know</div>
         </div>
         <h2
           id="methodology-title"
-          className="serif text-stone-50 max-w-4xl mb-6"
+          className="serif text-primary max-w-4xl mb-6"
           style={{
             fontSize: "clamp(1.875rem, 3.6vw, 2.75rem)",
             fontWeight: 500,
@@ -80,7 +80,7 @@ export function Methodology() {
         >
           Six sources. One reconciled view. Every claim traceable.
         </h2>
-        <p className="text-stone-400 max-w-2xl mb-16" style={{ fontSize: "1rem" }}>
+        <p className="text-tertiary max-w-2xl mb-16" style={{ fontSize: "1rem" }}>
           A brief is only as honest as its provenance. Every figure in an Orla Strategy Brief
           resolves to one of the sources below, with the refresh cadence stated and the analyst —
           when one was involved — named.
@@ -92,14 +92,14 @@ export function Methodology() {
           <Reveal key={s.n} delay={i * 0.06}>
             <div className="p-7 md:p-8 h-full rounded-sm panel-hover" style={panel}>
               <div className="flex items-baseline justify-between mb-4">
-                <div className="nums text-[11px] text-stone-500">{s.n}</div>
-                <div className="nums text-[11px] text-stone-400 tracking-[0.12em] uppercase">
+                <div className="nums text-[11px] text-quaternary">{s.n}</div>
+                <div className="nums text-[11px] text-tertiary tracking-[0.12em] uppercase">
                   Refresh · {s.cadence}
                 </div>
               </div>
               <div className="flex items-baseline justify-between mb-3 gap-4">
                 <h3
-                  className="serif text-stone-50"
+                  className="serif text-primary"
                   style={{ fontSize: "1.1875rem", fontWeight: 500 }}
                 >
                   {s.name}
@@ -107,7 +107,7 @@ export function Methodology() {
                 <div className={eyebrow + " text-right"}>{s.kind}</div>
               </div>
               <p
-                className="text-stone-300 leading-relaxed"
+                className="text-secondary leading-relaxed"
                 style={{ fontSize: "0.9375rem" }}
               >
                 {s.note}
@@ -122,14 +122,14 @@ export function Methodology() {
           className="mt-10 p-6 md:p-7 rounded-sm flex flex-col md:flex-row md:items-center md:justify-between gap-4"
           style={panel}
         >
-          <p className="text-stone-300" style={{ fontSize: "0.9375rem" }}>
+          <p className="text-secondary" style={{ fontSize: "0.9375rem" }}>
             Every brief ships with a methodology footnote — the exact extraction window, the
             sources consulted, and any judgment calls flagged with a confidence figure.
           </p>
           <a
             href="#"
             className="inline-flex items-center gap-2 self-start md:self-auto px-4 py-2.5 rounded-sm text-[13px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFDB51]/60 transition"
-            style={{ border: "1px solid rgba(250,250,249,0.2)", color: "#FAFAF9" }}
+            style={{ border: "1px solid var(--border-strong)", color: "var(--text-primary)" }}
           >
             Read the methodology paper
             <span aria-hidden className="nums text-[12px]">→</span>

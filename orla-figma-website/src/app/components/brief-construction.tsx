@@ -222,13 +222,13 @@ export function BriefConstruction() {
   return (
     <section
       className="relative px-6 md:px-12 lg:px-20 pb-24 md:pb-32"
-      style={{ borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "5rem" }}
+      style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "5rem" }}
     >
       <Reveal>
         <div className="flex items-center gap-4 mb-10">
-          <div className="nums text-[12px] text-stone-500">§&nbsp;00</div>
-          <div className="h-px flex-1 max-w-20" style={{ background: "rgba(255,255,255,0.12)" }} />
-          <div className="text-[11px] tracking-[0.24em] uppercase text-stone-400 smallcaps">
+          <div className="nums text-[12px] text-quaternary">§&nbsp;00</div>
+          <div className="h-px flex-1 max-w-20" style={{ background: "var(--border-strong)" }} />
+          <div className="text-[11px] tracking-[0.24em] uppercase text-tertiary smallcaps">
             See Orla think
           </div>
         </div>
@@ -239,8 +239,8 @@ export function BriefConstruction() {
           className="rounded-sm p-6 md:p-10"
           style={{
             background:
-              "linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.012))",
-            border: "1px solid rgba(255,255,255,0.06)",
+              "linear-gradient(180deg, var(--panel-from), var(--panel-to))",
+            border: "1px solid var(--border-subtle)",
           }}
         >
           {/* Progress bars */}
