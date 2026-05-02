@@ -538,8 +538,9 @@ function ConfidenceBar({
    ───────────────────────────────────────────── */
 export function Trust() {
   const items = [
+    ["Your data is yours.", "We never train models on your firm profile or pipeline data. What you put into Orla stays inside Orla."],
     ["Cancel anytime.", "No annual lock-in. No proration math."],
-    ["60 days, then gone.", "Full retention for 60 days after cancellation. Then permanently deleted."],
+    ["Sixty days, then gone.", "Full retention for 60 days after cancellation. Then permanently deleted."],
     ["Comprehensive export.", "Full brief history and firm profile, portable files, anytime."],
     ["No re-engagement emails.", "When you cancel, we stop emailing you. No win-back drip."],
   ];
