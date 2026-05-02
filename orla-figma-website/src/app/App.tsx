@@ -1,15 +1,5 @@
 import { Hero } from "./components/hero";
-import {
-  Broken,
-  Different,
-  Example,
-  Pricing,
-  Personas,
-  Trust,
-  Footer,
-} from "./components/sections";
-import { Methodology } from "./components/methodology";
-import { Compliance } from "./components/compliance";
+import { Broken, Trust, Footer } from "./components/sections";
 import { ProgressRail } from "./components/progress-rail";
 
 export default function App() {
@@ -26,14 +16,8 @@ export default function App() {
       <main id="main">
         <Hero />
         <Broken />
-        <Different />
-        <Example />
-        <Methodology />
-        <Pricing />
-        <Personas />
         <Trust />
       </main>
-      <Compliance />
       <Footer />
     </div>
   );
