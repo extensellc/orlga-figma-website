@@ -92,13 +92,12 @@ export function Hero() {
             className="serif text-primary leading-[1.04] tracking-[-0.015em] mb-8"
             style={{ fontSize: "clamp(2.5rem, 5.5vw, 4.75rem)", fontWeight: 500 }}
           >
-            From <span className="nums" style={{ fontSize: "0.92em" }}>$680B</span> in federal spend,
+            Your BD hours are the scarce resource.
             <br />
-            <span className="text-tertiary">the three things worth your week.</span>
+            <span className="text-tertiary">Your analysis hours shouldn&apos;t be.</span>
           </h1>
-          <p className="text-secondary max-w-xl leading-relaxed mb-10" style={{ fontSize: "1.0625rem" }}>
-            Orla narrows <span className="nums">4,217</span> active opportunities to a Friday brief —
-            ranked, scored, written in plain English. The funnel is the product.
+          <p className="text-secondary max-w-2xl leading-relaxed mb-10" style={{ fontSize: "1.125rem" }}>
+            Prepared analysis of which agencies to target, which to skip, and where the gaps in your firm&apos;s profile are costing you the most pipeline.
           </p>
           <div className="flex flex-wrap items-center gap-5">
             <a
@@ -106,15 +105,11 @@ export function Hero() {
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-sm transition"
               style={{ background: "var(--gold-cta)", color: "var(--cta-text)", fontWeight: 500 }}
             >
-              Start your 14-day trial
+              Start free trial
             </a>
-            <a href="#example" className="text-[14px] text-secondary hover:text-primary transition">
-              See an example brief →
+            <a href="#how-orla-thinks" className="text-[14px] text-secondary hover:text-primary transition">
+              See how it works →
             </a>
-          </div>
-          <div className="mt-10 text-[12px] text-tertiary">
-            <span className="nums">No credit card.</span> Cancel anytime.{" "}
-            <span className="nums">60-day</span> retention after cancel.
           </div>
         </motion.div>
       </div>
