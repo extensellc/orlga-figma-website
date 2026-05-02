@@ -107,6 +107,28 @@ export function Broken() {
                 <p className="text-secondary leading-relaxed max-w-3xl mb-4" style={{ fontSize: "1.0625rem" }}>
                   {p.b}
                 </p>
+                {p.n === "03" && (
+                  <motion.div
+                    className="my-6 max-w-3xl"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                  >
+                    <div className="flex flex-wrap gap-1.5">
+                      {Array.from({ length: 60 }).map((_, j) => (
+                        <span
+                          key={j}
+                          className="w-1 h-1 rounded-full"
+                          style={{ background: "var(--text-quaternary)", opacity: 0.5 }}
+                        />
+                      ))}
+                    </div>
+                    <p className="text-[12px] text-quaternary italic mt-3">
+                      4,217 opportunities. None ranked.
+                    </p>
+                  </motion.div>
+                )}
                 <div className="nums text-[14px] text-primary">{p.stat}</div>
               </div>
             </div>
@@ -191,6 +213,19 @@ export function HowOrlaThinks() {
                 </p>
               </div>
             ))}
+            <motion.p
+              className="text-tertiary italic leading-relaxed max-w-md pl-4 mt-8"
+              style={{
+                fontSize: "0.9375rem",
+                borderLeft: "2px solid var(--border-default)",
+              }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              On Tuesdays we re-run Patterns against the new SAM postings; on Wednesdays we walk Rules against the week&apos;s set-aside changes; on Thursdays we sit with Judgment one more time before Friday&apos;s brief goes out. The composite is the analyst&apos;s working answer, not the system&apos;s.
+            </motion.p>
           </div>
         </Reveal>
 
@@ -229,12 +264,12 @@ export function HowOrlaThinks() {
                     </span>
                   </div>
                   <div
-                    className="h-1.5 rounded-full overflow-hidden"
-                    style={{ background: "var(--border-default)" }}
+                    className="h-1 rounded-full overflow-hidden"
+                    style={{ background: "var(--border-default)", opacity: 0.65 }}
                   >
                     <motion.div
                       className="h-full rounded-full"
-                      style={{ background: s.color }}
+                      style={{ background: s.color, opacity: 0.75 }}
                       initial={{ width: 0 }}
                       whileInView={{ width: `${s.weight}%` }}
                       viewport={{ once: true }}
@@ -513,19 +548,19 @@ function ConfidenceBar({
       <div className="relative w-32 h-3">
         <div
           className="absolute inset-y-1 inset-x-0 rounded-full"
-          style={{ background: "var(--border-default)" }}
+          style={{ background: "var(--border-default)", opacity: 0.15 }}
         />
         <div
           className="absolute inset-y-1 rounded-full"
           style={{
             left: `${range[0] * 100}%`,
             right: `${(1 - range[1]) * 100}%`,
-            background: "rgba(125,211,252,0.3)",
+            background: "rgba(125,211,252,0.55)",
           }}
         />
         <div
-          className="absolute top-0 bottom-0 w-px"
-          style={{ left: `${conf * 100}%`, background: "var(--signal-rules)" }}
+          className="absolute top-0 bottom-0 w-0.5"
+          style={{ left: `${conf * 100}%`, background: "var(--gold-cta)" }}
         />
       </div>
       <div className="nums text-[12px] text-primary">{conf.toFixed(2)}</div>
