@@ -64,7 +64,7 @@ export function Methodology() {
     >
       <Reveal>
         <div className="flex items-center gap-4 mb-6">
-          <div className="mono text-[12px] text-stone-500">§&nbsp;04</div>
+          <div className="nums text-[12px] text-stone-500">§&nbsp;04</div>
           <div className="h-px flex-1 max-w-20" style={{ background: "rgba(255,255,255,0.12)" }} />
           <div className={eyebrow}>How we know</div>
         </div>
@@ -92,8 +92,8 @@ export function Methodology() {
           <Reveal key={s.n} delay={i * 0.06}>
             <div className="p-7 md:p-8 h-full rounded-sm panel-hover" style={panel}>
               <div className="flex items-baseline justify-between mb-4">
-                <div className="mono text-[11px] text-stone-500">{s.n}</div>
-                <div className="mono text-[11px] text-stone-400 tracking-[0.12em] uppercase">
+                <div className="nums text-[11px] text-stone-500">{s.n}</div>
+                <div className="nums text-[11px] text-stone-400 tracking-[0.12em] uppercase">
                   Refresh · {s.cadence}
                 </div>
               </div>
@@ -132,7 +132,7 @@ export function Methodology() {
             style={{ border: "1px solid rgba(250,250,249,0.2)", color: "#FAFAF9" }}
           >
             Read the methodology paper
-            <span aria-hidden className="mono text-[12px]">→</span>
+            <span aria-hidden className="nums text-[12px]">→</span>
           </a>
         </div>
       </Reveal>

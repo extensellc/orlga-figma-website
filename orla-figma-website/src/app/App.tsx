@@ -17,7 +17,7 @@ export default function App() {
     <div
       className="min-h-screen w-full text-stone-100 antialiased"
       style={{
-        background: "linear-gradient(to bottom right, #050814, #0B1A33)",
+        background: "linear-gradient(to bottom right, #050814, #0B1433)",
         fontFamily: "var(--font-sans)",
       }}
     >

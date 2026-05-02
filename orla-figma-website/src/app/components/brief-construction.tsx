@@ -226,7 +226,7 @@ export function BriefConstruction() {
     >
       <Reveal>
         <div className="flex items-center gap-4 mb-10">
-          <div className="mono text-[12px] text-stone-500">§&nbsp;00</div>
+          <div className="nums text-[12px] text-stone-500">§&nbsp;00</div>
           <div className="h-px flex-1 max-w-20" style={{ background: "rgba(255,255,255,0.12)" }} />
           <div className="text-[11px] tracking-[0.24em] uppercase text-stone-400 smallcaps">
             See Orla think
@@ -341,7 +341,7 @@ export function BriefConstruction() {
 
               <div className="mt-auto pt-10 flex items-baseline justify-between">
                 <div className="text-[10px] tracking-[0.2em] uppercase text-stone-500">Scope</div>
-                <div className="mono text-[11px] text-stone-300">FY26 · Q2–Q3</div>
+                <div className="nums text-[11px] text-stone-300">FY26 · Q2–Q3</div>
               </div>
             </div>
 
@@ -381,7 +381,7 @@ export function BriefConstruction() {
                   <div className="text-[10px] tracking-[0.22em] uppercase text-stone-500 mb-1">
                     {s.ring.label}
                   </div>
-                  <div className="mono text-[15px] text-stone-100">
+                  <div className="nums text-[15px] text-stone-100">
                     {Math.round(
                       (s.ring.from + (s.ring.to - s.ring.from) * easeInOut(summaryT)) * 100
                     )}
@@ -405,7 +405,7 @@ export function BriefConstruction() {
                   }}
                 />
               ))}
-              <span className="mono text-[11px] text-stone-500 ml-2">
+              <span className="nums text-[11px] text-stone-500 ml-2">
                 Scenario {idx + 1} of {scenarios.length}
               </span>
             </div>
@@ -457,7 +457,7 @@ function BarRow({ row, progress, delay }: { row: Row; progress: number; delay: n
     <div>
       <div className="flex items-baseline justify-between mb-1.5">
         <div className="text-[11px] text-stone-300">{row.label}</div>
-        <div className="mono text-[11px]">
+        <div className="nums text-[11px]">
           {row.fmt ? row.fmt(value) : value.toFixed(0)}
         </div>
       </div>
@@ -512,7 +512,7 @@ function DeltaRow({
   return (
     <div className="flex items-center justify-between py-3 border-b border-stone-50/8">
       <span className="text-[13px] text-stone-200">{label}</span>
-      <span className="mono text-[13px]" style={{ color }}>
+      <span className="nums text-[13px]" style={{ color }}>
         {fmt(value)}
       </span>
     </div>

@@ -72,12 +72,12 @@ export function Hero() {
             className="serif text-stone-50 leading-[1.04] tracking-[-0.015em] mb-8"
             style={{ fontSize: "clamp(2.5rem, 5.5vw, 4.75rem)", fontWeight: 500 }}
           >
-            From <span className="mono" style={{ fontSize: "0.92em" }}>$680B</span> in federal spend,
+            From <span className="nums" style={{ fontSize: "0.92em" }}>$680B</span> in federal spend,
             <br />
             <span className="text-stone-400">the three things worth your week.</span>
           </h1>
           <p className="text-stone-300 max-w-xl leading-relaxed mb-10" style={{ fontSize: "1.0625rem" }}>
-            Orla narrows <span className="mono">4,217</span> active opportunities to a Friday brief —
+            Orla narrows <span className="nums">4,217</span> active opportunities to a Friday brief —
             ranked, scored, written in plain English. The funnel is the product.
           </p>
           <div className="flex flex-wrap items-center gap-5">
@@ -93,8 +93,8 @@ export function Hero() {
             </a>
           </div>
           <div className="mt-10 text-[12px] text-stone-400">
-            <span className="mono">No credit card.</span> Cancel anytime.{" "}
-            <span className="mono">60-day</span> retention after cancel.
+            <span className="nums">No credit card.</span> Cancel anytime.{" "}
+            <span className="nums">60-day</span> retention after cancel.
           </div>
         </motion.div>
 
@@ -107,7 +107,7 @@ export function Hero() {
             <div className="text-[10px] tracking-[0.28em] uppercase text-stone-500 smallcaps">
               Orla · Live scoring
             </div>
-            <div className="mono text-[11px] text-stone-400">FY26 · WK 17</div>
+            <div className="nums text-[11px] text-stone-400">FY26 · WK 17</div>
           </div>
           <ScoringPanel opps={opps} />
         </motion.div>
@@ -162,7 +162,7 @@ function ScoringPanel({ opps }: { opps: Opp[] }) {
             Live · Opportunity scoring
           </div>
         </div>
-        <div className="mono text-[10px] text-stone-500">
+        <div className="nums text-[10px] text-stone-500">
           Last sync · 14:00 ET · next · {String(47 - (t % 47)).padStart(2, "0")}m
         </div>
       </div>
@@ -172,11 +172,11 @@ function ScoringPanel({ opps }: { opps: Opp[] }) {
           className="grid gap-y-3.5 text-[12px]"
           style={{ gridTemplateColumns: "auto 1fr auto auto auto" }}
         >
-          <div className="mono text-[9px] uppercase tracking-[0.2em] text-stone-500">ID</div>
+          <div className="nums text-[9px] uppercase tracking-[0.2em] text-stone-500">ID</div>
           <div className="text-[9px] uppercase tracking-[0.2em] text-stone-500 smallcaps">Opportunity</div>
-          <div className="mono text-[9px] uppercase tracking-[0.2em] text-stone-500 text-right">Cap</div>
-          <div className="mono text-[9px] uppercase tracking-[0.2em] text-stone-500 text-right pl-3">Fit</div>
-          <div className="mono text-[9px] uppercase tracking-[0.2em] text-stone-500 text-right pl-4">Dec.</div>
+          <div className="nums text-[9px] uppercase tracking-[0.2em] text-stone-500 text-right">Cap</div>
+          <div className="nums text-[9px] uppercase tracking-[0.2em] text-stone-500 text-right pl-3">Fit</div>
+          <div className="nums text-[9px] uppercase tracking-[0.2em] text-stone-500 text-right pl-4">Dec.</div>
 
           {opps.map((o, i) => {
             const jitter = Math.sin(t * 0.7 + i * 1.1) * 0.008;
@@ -184,19 +184,19 @@ function ScoringPanel({ opps }: { opps: Opp[] }) {
             const fit = Math.max(0, Math.min(1, o.fit - jitter * 0.7));
             return (
               <Fragment key={o.id}>
-                <div className="mono text-stone-500">{o.id}</div>
+                <div className="nums text-stone-500">{o.id}</div>
                 <div className="text-stone-100 leading-tight">
-                  <span className="mono text-[11px] text-stone-400 mr-2">{o.agency}</span>
+                  <span className="nums text-[11px] text-stone-400 mr-2">{o.agency}</span>
                   {o.title}
                 </div>
-                <div className="mono text-stone-100 text-right">{cap.toFixed(2)}</div>
+                <div className="nums text-stone-100 text-right">{cap.toFixed(2)}</div>
                 <div
-                  className="mono text-stone-100 text-right pl-3"
+                  className="nums text-stone-100 text-right pl-3"
                   style={o.hot ? { color: "#FFDB51" } : undefined}
                 >
                   {fit.toFixed(2)}
                 </div>
-                <div className="mono text-stone-400 text-right pl-4">{o.decision}</div>
+                <div className="nums text-stone-400 text-right pl-4">{o.decision}</div>
               </Fragment>
             );
           })}
@@ -204,7 +204,7 @@ function ScoringPanel({ opps }: { opps: Opp[] }) {
 
         <div className="mt-6 pt-4 border-t border-stone-50/10 flex items-baseline justify-between">
           <div className="smallcaps text-[10px] tracking-[0.24em] text-stone-400">Sources synced</div>
-          <div className="mono text-[10px] text-stone-400">
+          <div className="nums text-[10px] text-stone-400">
             SAM · FPDS · USAspending · 04.26 · 14:00
           </div>
         </div>
@@ -222,7 +222,7 @@ function FunnelStrip() {
       transition={{ duration: 1.0, delay: 0.6, ease: [0.2, 0.7, 0.2, 1] }}
     >
       <div className="flex items-center gap-4 mb-5">
-        <div className="mono text-[11px] text-stone-500">§ 00</div>
+        <div className="nums text-[11px] text-stone-500">§ 00</div>
         <div className="h-px flex-1 max-w-20" style={{ background: "rgba(255,255,255,0.12)" }} />
         <div className="text-[11px] tracking-[0.24em] uppercase text-stone-400 smallcaps">
           The funnel
@@ -248,13 +248,13 @@ function FunnelStrip() {
               <div className="text-[10px] uppercase tracking-[0.22em] smallcaps text-stone-500">
                 {s.label}
               </div>
-              <div className="mono text-[10px] text-stone-600">
+              <div className="nums text-[10px] text-stone-600">
                 {String(i + 1).padStart(2, "0")}/04
               </div>
             </div>
             <div className="flex items-baseline gap-3">
               <span
-                className="mono text-stone-50"
+                className="nums text-stone-50"
                 style={{ fontSize: "1.875rem", letterSpacing: "-0.01em" }}
               >
                 {s.n}
@@ -265,7 +265,7 @@ function FunnelStrip() {
               {i === FUNNEL.length - 1 && (
                 <span
                   aria-hidden
-                  className="mono text-[10px] uppercase tracking-[0.18em]"
+                  className="nums text-[10px] uppercase tracking-[0.18em]"
                   style={{ color: "#FFDB51" }}
                 >
                   · brief

@@ -23,7 +23,7 @@ export function Compliance() {
         <div className="flex items-center gap-4 mb-10">
           <div className={eyebrow}>Compliance & security</div>
           <div className="h-px flex-1" style={{ background: "rgba(255,255,255,0.08)" }} />
-          <div id="compliance-title" className="mono text-[11px] text-stone-500">
+          <div id="compliance-title" className="nums text-[11px] text-stone-500">
             Posture · Apr 2026
           </div>
         </div>

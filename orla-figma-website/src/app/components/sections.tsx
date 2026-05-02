@@ -58,7 +58,7 @@ function SectionHeader({
   return (
     <Reveal>
       <div className="flex items-center gap-4 mb-6">
-        <div className="mono text-[12px] text-stone-500">§&nbsp;{num}</div>
+        <div className="nums text-[12px] text-stone-500">§&nbsp;{num}</div>
         <div className="h-px flex-1 max-w-20" style={{ background: "rgba(255,255,255,0.12)" }} />
         <div className={eyebrow}>{kicker}</div>
       </div>
@@ -114,7 +114,7 @@ export function Broken() {
         {pains.map((p, i) => (
           <Reveal key={p.n} delay={i * 0.1}>
             <div className="p-8 md:p-10 h-full rounded-sm panel-hover" style={panel}>
-              <div className="mono text-[11px] text-stone-500 mb-6">{p.n}</div>
+              <div className="nums text-[11px] text-stone-500 mb-6">{p.n}</div>
               <h3
                 className="serif text-stone-50 mb-4"
                 style={{ fontSize: "1.375rem", fontWeight: 500, lineHeight: 1.3 }}
@@ -125,7 +125,7 @@ export function Broken() {
                 {p.b}
               </p>
               <div className="pt-5 border-t border-stone-50/10">
-                <div className="mono text-[13px]">{p.stat}</div>
+                <div className="nums text-[13px]">{p.stat}</div>
               </div>
             </div>
           </Reveal>
@@ -184,7 +184,7 @@ export function Different() {
         title="Three signals. One score. The math is named."
         lede={
           <>
-            From <span className="mono">312</span> NAICS-relevant opportunities, Orla derives three
+            From <span className="nums">312</span> NAICS-relevant opportunities, Orla derives three
             independent signals — <span className="text-stone-50">Rules</span>,{" "}
             <span className="text-stone-50">Patterns</span>, and{" "}
             <span className="text-stone-50">Judgment</span> — and combines them into one composite.
@@ -209,7 +209,7 @@ export function Different() {
                     Reset to default
                   </button>
                 )}
-                <div className="mono text-[11px] text-stone-500">Σ = 1.00</div>
+                <div className="nums text-[11px] text-stone-500">Σ = 1.00</div>
               </div>
             </div>
             {FACTORS.map((f) => (
@@ -221,7 +221,7 @@ export function Different() {
                       {f.label}
                     </div>
                   </div>
-                  <div className="mono text-[12px] text-stone-100">{(n[f.k] * 100).toFixed(0)}%</div>
+                  <div className="nums text-[12px] text-stone-100">{(n[f.k] * 100).toFixed(0)}%</div>
                 </div>
                 <div className="relative">
                   <input
@@ -257,7 +257,7 @@ export function Different() {
           <div className="rounded-sm p-7 md:p-8" style={panel}>
             <div className="flex items-baseline justify-between mb-5 pb-4 border-b border-stone-50/10">
               <div className={eyebrow}>Composite watchlist · top 6 of 47</div>
-              <div className="mono text-[11px] text-stone-500">Updated · live</div>
+              <div className="nums text-[11px] text-stone-500">Updated · live</div>
             </div>
             <motion.ul layout className="space-y-2">
               {scored.map((o, i) => (
@@ -272,17 +272,17 @@ export function Different() {
                     borderLeft: i === 0 ? "2px solid #FFDB51" : "2px solid transparent",
                   }}
                 >
-                  <div className="mono text-[12px] text-stone-500 w-6">
+                  <div className="nums text-[12px] text-stone-500 w-6">
                     {String(i + 1).padStart(2, "0")}
                   </div>
-                  <div className="mono text-[11px] text-stone-400 w-10">{o.a}</div>
+                  <div className="nums text-[11px] text-stone-400 w-10">{o.a}</div>
                   <div className="text-[13px] text-stone-100">{o.t}</div>
                   <div className="hidden md:flex items-center gap-1.5 mr-4">
                     <SegBar v={o.r * n.rules} color="#7DD3FC" />
                     <SegBar v={o.p * n.patterns} color="#60A5FA" />
                     <SegBar v={o.j * n.judgment} color="#FFDB51" />
                   </div>
-                  <div className="mono text-[13px]" style={{ color: i === 0 ? "#FFDB51" : "#FAFAF9" }}>
+                  <div className="nums text-[13px]" style={{ color: i === 0 ? "#FFDB51" : "#FAFAF9" }}>
                     {o.s.toFixed(2)}
                   </div>
                 </motion.li>
@@ -290,7 +290,7 @@ export function Different() {
             </motion.ul>
             <div className="mt-5 pt-4 border-t border-stone-50/10 flex items-baseline justify-between text-[11px] text-stone-500">
               <span>Composite = Σ (signal × weight)</span>
-              <span className="mono">
+              <span className="nums">
                 Top: {scored[0].id} · {scored[0].s.toFixed(2)}
               </span>
             </div>
@@ -467,7 +467,7 @@ export function Example() {
           title="Three opportunities. Why each survived."
           lede={
             <>
-              From <span className="mono">47</span> on the watchlist, three earned a place in this
+              From <span className="nums">47</span> on the watchlist, three earned a place in this
               week's brief — each with the chart that explains it and the analyst who signed it.
               Move the weights in <a href="#different" className="underline underline-offset-2 hover:text-stone-100">§02</a>; the brief follows.
             </>
@@ -496,7 +496,7 @@ export function Example() {
             </div>
             <div className="text-right">
               <div className={eyebrow + " mb-1"}>Composite range</div>
-              <div className="mono text-[12px]">
+              <div className="nums text-[12px]">
                 {compositeLow.toFixed(2)} — {compositeHigh.toFixed(2)} · conf. {confLow.toFixed(2)} — {confHigh.toFixed(2)}
               </div>
             </div>
@@ -551,7 +551,7 @@ export function Example() {
             </p>
             <a
               href="#methodology"
-              className="mono text-[12px] text-stone-300 hover:text-stone-50 transition whitespace-nowrap"
+              className="nums text-[12px] text-stone-300 hover:text-stone-50 transition whitespace-nowrap"
             >
               How we know →
             </a>
@@ -570,8 +570,8 @@ function BriefEntry({ b, featured = false }: { b: Brief; featured?: boolean }) {
       <div>
         <div className="flex items-baseline justify-between mb-3">
           <div className="flex items-baseline gap-3">
-            <div className="mono text-[12px] text-stone-500">#{b.rank}</div>
-            <div className="mono text-[11px] text-stone-400">
+            <div className="nums text-[12px] text-stone-500">#{b.rank}</div>
+            <div className="nums text-[11px] text-stone-400">
               {b.agency} · {b.id}
             </div>
           </div>
@@ -605,7 +605,7 @@ function BriefEntry({ b, featured = false }: { b: Brief; featured?: boolean }) {
         </p>
         <div className="flex items-center justify-between flex-wrap gap-3">
           <ConfidenceBar conf={b.conf} range={b.confRange} />
-          <div className="mono text-[11px] text-stone-400">— {b.analyst}</div>
+          <div className="nums text-[11px] text-stone-400">— {b.analyst}</div>
         </div>
       </div>
 
@@ -631,7 +631,7 @@ function Stat({
       <div className="text-[10px] uppercase tracking-[0.18em] text-stone-500 smallcaps mb-1">
         {label}
       </div>
-      <div className="mono text-[14px]" style={highlight ? { color: "#FFDB51" } : undefined}>
+      <div className="nums text-[14px]" style={highlight ? { color: "#FFDB51" } : undefined}>
         {v}
       </div>
     </div>
@@ -666,7 +666,7 @@ function ConfidenceBar({
           style={{ left: `${conf * 100}%`, background: "#7DD3FC" }}
         />
       </div>
-      <div className="mono text-[12px] text-stone-100">{conf.toFixed(2)}</div>
+      <div className="nums text-[12px] text-stone-100">{conf.toFixed(2)}</div>
     </div>
   );
 }
@@ -767,7 +767,7 @@ function Sparkline({
             y={pad + 14}
             fill="#FAFAF9"
             fontSize="10"
-            fontFamily="IBM Plex Mono, monospace"
+            fontFamily="IBM Plex Sans, sans-serif"
             textAnchor={annotation.idx > series.length / 2 ? "end" : "start"}
           >
             {annotation.label}
@@ -778,7 +778,7 @@ function Sparkline({
           y={yScale(last) - 8}
           fill="#7DD3FC"
           fontSize="11"
-          fontFamily="IBM Plex Mono, monospace"
+          fontFamily="IBM Plex Sans, sans-serif"
           textAnchor="end"
         >
           ${last}M
@@ -788,7 +788,7 @@ function Sparkline({
           y={h - 4}
           fill="rgba(255,255,255,0.3)"
           fontSize="9"
-          fontFamily="IBM Plex Mono, monospace"
+          fontFamily="IBM Plex Sans, sans-serif"
         >
           Q1 FY23
         </text>
@@ -797,7 +797,7 @@ function Sparkline({
           y={h - 4}
           fill="rgba(255,255,255,0.3)"
           fontSize="9"
-          fontFamily="IBM Plex Mono, monospace"
+          fontFamily="IBM Plex Sans, sans-serif"
           textAnchor="end"
         >
           Q4 FY25
@@ -884,7 +884,7 @@ export function Pricing() {
                 </div>
                 <div className="flex items-baseline gap-2">
                   <span
-                    className="mono-lg text-stone-50"
+                    className="nums-lg text-stone-50"
                     style={{ fontSize: "1.875rem", fontWeight: 500 }}
                   >
                     {t.price}
@@ -925,7 +925,7 @@ export function Pricing() {
                 >
                   <div className="text-[14px] text-stone-100">
                     {/^[\d.\-–—+]+$/.test(cell) ? (
-                      <span className="mono">{cell}</span>
+                      <span className="nums">{cell}</span>
                     ) : (
                       cell
                     )}
@@ -1029,7 +1029,7 @@ export function Personas() {
                 >
                   {p.who}
                 </h3>
-                <div className="mono text-[12px] text-stone-400">{p.stat}</div>
+                <div className="nums text-[12px] text-stone-400">{p.stat}</div>
               </div>
               <p
                 className="text-stone-300 leading-relaxed"
@@ -1065,7 +1065,7 @@ export function Trust() {
       <div className="grid lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-20 items-start">
         <Reveal>
           <div className="flex items-center gap-4 mb-6">
-            <div className="mono text-[12px] text-stone-500">§&nbsp;07</div>
+            <div className="nums text-[12px] text-stone-500">§&nbsp;07</div>
             <div className="h-px flex-1 max-w-20" style={{ background: "rgba(255,255,255,0.12)" }} />
             <div className={eyebrow}>Privacy & trust</div>
           </div>
@@ -1081,7 +1081,7 @@ export function Trust() {
           <dl className="divide-y divide-stone-50/10">
             {items.map(([k, v], i) => (
               <div key={k} className="grid grid-cols-[auto_1fr] gap-8 py-5 first:pt-0 items-baseline">
-                <dt className="mono text-[11px] text-stone-500 w-8">0{i + 1}</dt>
+                <dt className="nums text-[11px] text-stone-500 w-8">0{i + 1}</dt>
                 <dd>
                   <div className="text-stone-50 mb-1" style={{ fontSize: "0.9375rem", fontWeight: 500 }}>
                     {k}
@@ -1121,7 +1121,7 @@ export function Footer() {
           <a href="#" className="hover:text-stone-100 transition">Security</a>
           <a href="#" className="hover:text-stone-100 transition">Contact</a>
         </div>
-        <div className="mono text-[12px] text-stone-500">© 2026 Orla Intelligence</div>
+        <div className="nums text-[12px] text-stone-500">© 2026 Orla Intelligence</div>
       </div>
     </footer>
   );

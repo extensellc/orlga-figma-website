@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
 
 :root {
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
   --font-serif: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-nums: 'IBM Plex Sans', ui-sans-serif, sans-serif;
 }
 
 html, body {
@@ -16,18 +16,18 @@ html, body {
   font-feature-settings: "liga", "kern";
 }
 
-/* Orla's signature inline mono-in-sans — slightly tighter size, extra tracking, brighter color */
-.mono {
-  font-family: var(--font-mono);
+/* Orla's signature inline nums-in-sans — tabular numerals for alignment */
+.nums {
+  font-family: var(--font-nums);
   font-feature-settings: "tnum";
-  font-size: 0.94em;
-  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
   color: #FAFAF9;
 }
 
-.mono-lg {
-  font-family: var(--font-mono);
+.nums-lg {
+  font-family: var(--font-nums);
   font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
   letter-spacing: -0.01em;
 }
 
